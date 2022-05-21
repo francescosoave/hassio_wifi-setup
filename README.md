@@ -1,20 +1,20 @@
 # How to setup Wifi when installing Home Assistant OS.
-### Tested on Rasp 3 B+ (x64)
+### Tested on RPi 3 B+ (x64)
 
 ## Things you need:
 
-- balenaEtcher software
+- balenaEtcher software [link](https://www.balena.io/etcher/)
 - SD-card
 - USB-drive
 
 ## Steps:
 
-1. Flash the SD-card drive using balenaEtcher software according to the official docs 19
-2. Format USB-drive as FAT32 and name it CONFIG
-3. Create folder network, inside it create a file my-network
+1. Flash the SD-card drive using balenaEtcher software according to the official docs [link](https://www.home-assistant.io/installation/raspberrypi)
+2. Format USB-drive as FAT32 and name it "CONFIG" (capital, without quotes)
+3. Create folder network, inside it create a file called "my-network" (without quotes)
 4. Write the file with the following content:
 
--- 
+```python 
 [connection]
 id=my-network
 uuid=72111c67-4a5d-4d5c-925e-f8ee26efb3c3
@@ -22,7 +22,7 @@ type=802-11-wireless
 
 [802-11-wireless]
 mode=infrastructure
-ssid=**Your SSID**
+ssid=**Insert Your SSID Here**
 
 #Uncomment below if your SSID is not broadcasted
 #hidden=true
@@ -30,7 +30,7 @@ ssid=**Your SSID**
 [802-11-wireless-security]
 auth-alg=open
 key-mgmt=wpa-psk
-psk=**Your Password**
+psk=**Insert Your Password Here**
 
 [ipv4]
 method=auto
@@ -38,12 +38,14 @@ method=auto
 [ipv6]
 addr-gen-mode=stable-privacy
 method=auto
--- 
+```
 
-5. Plug into Raspberry Pi 3B+ USB-stick and SD-card
-6. Plug power supply and wait for around 1 minute (Note: do not plug LAN cable)
-7. Check the http://homeassistant.local:8123/
-8. DONE!
+5. Make sure the file has no extension
+6. Make sure the file has UNIX end of line, not Windows! (you can use Notepad++ to change them)
+7. Plug into Raspberry Pi 3B+ both USB-stick and SD-card
+8. Plug power supply and wait for around 1 minute
+9. Check the http://homeassistant.local:8123/
+10. DONE!
 
 
 ## Troubleshooting:
